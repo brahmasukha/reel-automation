@@ -1,0 +1,38 @@
+PATH: /Users/pro/Movies/CapCut/User Data/Projects/com.lveditor.draft/1221 (3)/draft_info.json
+
+# Paste timestamps below this line:
+00:15:01    00:15:14    (HOOK: “You may think how can just a book give enlightenment?”)
+00:03:00    00:03:13    (CONTEXT: Jeevan Mukti is not just a book)
+00:03:42    00:03:53    (SETUP: Best of Paramashiva’s message for this age)
+00:05:41    00:06:08    (PAYOFF: Jeevan Mukti is the uttama of Vedagamas for this age)
+00:15:14    00:15:35    (CONCLUSION: Paramashiva exists as this book)
+
+
+00:07:15    00:07:43    (HOOK: Liberation from addictions and patterns)
+00:07:47    00:08:11    (CONTEXT: Higher pleasures will not distract you)
+00:08:11    00:08:41    (PAYOFF: Radiating Paramukti while living in the body)
+00:09:01    00:09:19    (CONCLUSION: From stress-free life to absolute enlightenment)
+
+
+00:12:34    00:12:52    (HOOK: “I am giving you Jeevan Mukti.”)
+00:12:52    00:13:32    (CONTEXT: It excites, entertains, trains, enlightens)
+00:13:32    00:14:02    (PAYOFF: All four experiences from one book)
+00:14:02    00:14:30    (CONCLUSION: Make this a daily habit)
+
+
+00:14:42    00:15:01    (HOOK: Within 365 days you will radiate enlightenment)
+00:15:01    00:15:14    (CONTEXT: Doubt about a book giving enlightenment)
+00:15:14    00:15:59    (PAYOFF: Paramashiva’s supernal effulgence mapped into language)
+00:16:23    00:16:49    (CONCLUSION: Make this book your eternal companion)
+
+
+00:24:10    00:24:21    (HOOK: Paramashiva will own your body)
+00:23:19    00:23:46    (CONTEXT: Saiyujya Mukti is oneness with Paramashiva)
+00:24:21    00:24:50    (PAYOFF: Paramashiva manifesting through your body)
+00:25:03    00:25:17    (CONCLUSION: This happens through Jeevan Mukti book)
+
+
+00:33:19    00:33:36    (HOOK: Patterns rise like waves)
+00:33:36    00:34:03    (CONTEXT: Jeevan Mukti cognitions rise like a tsunami)
+00:34:03    00:34:24    (PAYOFF: Swallowing suffering and giving enlightenment)
+00:34:31    00:34:54    (CONCLUSION: The book enters you and makes you Paramashiva)
