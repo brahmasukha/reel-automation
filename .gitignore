@@ -1,0 +1,52 @@
+# Environment variables (contains API keys)
+.env
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.transcript.txt
+
+# FFmpeg binary (if placed locally)
+ffmpeg.exe
+ffprobe.exe
+
+# Output files
+output/
+exports/
+
+# Backup files
+*.backup
+*_BACKUP_*
