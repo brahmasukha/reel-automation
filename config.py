@@ -103,12 +103,20 @@ CAPCUT_PROJECTS_ROOT = _get_capcut_projects_root()
 GAP_BETWEEN_REELS_SECONDS = int(os.getenv('GAP_BETWEEN_REELS_SECONDS', '10'))
 MAX_REEL_DURATION = int(os.getenv('MAX_REEL_DURATION', '58'))
 
+# Cut Buffer Configuration (prevents cutting words mid-sentence)
+CUT_START_BUFFER_SECONDS = float(os.getenv('CUT_START_BUFFER_SECONDS', '0.8'))
+CUT_END_BUFFER_SECONDS = float(os.getenv('CUT_END_BUFFER_SECONDS', '0.8'))
+
 # Transcription Configuration
 TRANSCRIPTION_METHOD = os.getenv('TRANSCRIPTION_METHOD', 'local').lower()
 WHISPER_MODEL = os.getenv('WHISPER_MODEL', 'base')
 
 # Gemini Rate Limiting
 GEMINI_API_DELAY_SECONDS = int(os.getenv('GEMINI_API_DELAY_SECONDS', '5'))
+
+# Reel Generation Settings
+MIN_REELS_PER_3MIN = int(os.getenv('MIN_REELS_PER_3MIN', '1'))
+REEL_GENERATION_MODE = os.getenv('REEL_GENERATION_MODE', 'balanced').lower()
 
 # CapCut Executable Path (Windows)
 # Support both CapCut (international) and JianyingPro (Chinese) versions

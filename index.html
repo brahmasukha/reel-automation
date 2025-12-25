@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>United Ancient Nations - Media & Communications Structure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(to bottom right, #f0fdf4, #fef3c7, #fed7aa);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-top: 4px solid #059669;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-icon {
+            width: 48px;
+            height: 48px;
+            color: #059669;
+        }
+
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            color: #4b5563;
+        }
+
+        .philosophy {
+            background: #f0fdf4;
+            border-left: 4px solid #059669;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        .philosophy strong {
+            font-weight: bold;
+        }
+
+        .legend {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .legend h3 {
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 0.25rem;
+        }
+
+        .department {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid;
+        }
+
+        .department-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .department-header:hover {
+            background-color: #f9fafb;
+        }
+
+        .department-icon {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .department-icon svg {
+            width: 2rem;
+            height: 2rem;
+            color: white;
+        }
+
+        .department-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .department-title-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .department-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .priority-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+
+        .priority-highest {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .priority-high {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+        }
+
+        .priority-core {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .department-subtitle {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .department-description {
+            color: #374151;
+        }
+
+        .chevron {
+            margin-left: auto;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .department-body {
+            display: none;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .department-body.expanded {
+            display: block;
+        }
+
+        .division {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .division h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .focus-box {
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .focus-un {
+            background-color: #f9fafb;
+        }
+
+        .focus-uan {
+            background-color: #f0fdf4;
+        }
+
+        .focus-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .focus-un .focus-label {
+            color: #6b7280;
+        }
+
+        .focus-uan .focus-label {
+            color: #059669;
+        }
+
+        .focus-uan .focus-text {
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .initiatives {
+            background-color: #fffbeb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .initiatives-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #78350f;
+            margin-bottom: 0.5rem;
+        }
+
+        .initiatives ul {
+            list-style: none;
+        }
+
+        .initiatives li {
+            font-size: 0.875rem;
+            color: #374151;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .initiatives li::before {
+            content: "•";
+            color: #d97706;
+            margin-top: 0.125rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            background: linear-gradient(to right, #059669, #d97706);
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+        }
+
+        /* Color classes */
+        .bg-red-600 { background-color: #dc2626; }
+        .bg-blue-600 { background-color: #2563eb; }
+        .bg-purple-600 { background-color: #9333ea; }
+        .bg-indigo-600 { background-color: #4f46e5; }
+        .bg-emerald-600 { background-color: #059669; }
+        .bg-cyan-600 { background-color: #0891b2; }
+        .bg-purple-500 { background-color: #a855f7; }
+        .bg-teal-500 { background-color: #14b8a6; }
+        .bg-amber-600 { background-color: #d97706; }
+        .bg-rose-600 { background-color: #e11d48; }
+        .bg-red-500 { background-color: #ef4444; }
+        .bg-indigo-500 { background-color: #6366f1; }
+
+        .text-red-600 { color: #dc2626; }
+        .text-blue-600 { color: #2563eb; }
+        .text-purple-600 { color: #9333ea; }
+        .text-amber-600 { color: #d97706; }
+        .text-emerald-600 { color: #059669; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <svg class="header-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <h1>United Ancient Nations</h1>
+                    <p>Complete Media & Communications Structure Mapping</p>
+                </div>
+            </div>
+            <div class="philosophy">
+                <p><strong>Core Philosophy:</strong> From centralized UN messaging to distributed indigenous sovereignty communications - including daily spokesperson briefings, 24/7 news service, live broadcasting, and comprehensive media support infrastructure.</p>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <h3>Department Priority Levels:</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color bg-red-600"></div>
+                    <span><strong>HIGHEST:</strong> Daily operations, spokesperson, news</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color bg-purple-600"></div>
+                    <span><strong>HIGH:</strong> Media relations, accreditation, broadcasting</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color bg-emerald-600"></div>
+                    <span><strong>CORE:</strong> Strategic communications, languages, creative</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Departments -->
+        <div id="departments"></div>
+
+        <!-- Stats -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number text-red-600">4</div>
+                <div class="stat-label">Highest Priority Units</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number text-emerald-600">12</div>
+                <div class="stat-label">Major Departments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number text-blue-600">40+</div>
+                <div class="stat-label">Specialized Divisions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number text-purple-600">100+</div>
+                <div class="stat-label">Languages in News</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number text-amber-600">24/7</div>
+                <div class="stat-label">News & Broadcasting</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Guided by the Supreme Pontiff of Hinduism (SPH)</strong> - Reviving Ancient Enlightened Indigenous Civilizational Nations</p>
+        </div>
+    </div>
+
+    <script>
+        const departments = [
+            {
+                id: 'spokesperson',
+                icon: 'megaphone',
+                unName: 'UN Spokesperson for the Secretary-General',
+                uanName: 'Spokesperson for the Supreme Pontiff & Indigenous Nations Voice',
+                color: 'bg-red-600',
+                priority: 'HIGHEST',
+                description: 'Principal voice representing indigenous nations globally, conducting daily briefings and crisis communications',
+                divisions: [
+                    {
+                        name: 'Office of the Spokesperson',
+                        unFocus: 'Daily briefings, SG statements, press conferences',
+                        uanFocus: 'Daily Indigenous Nations Briefings - SPH messages, indigenous sovereignty updates, cultural revival announcements',
+                        keyInitiatives: [
+                            'Daily press briefings in major indigenous languages',
+                            'SPH official statements and guidance',
+                            'Weekly Indigenous Issues Press Conferences',
+                            'Emergency briefings on indigenous rights violations',
+                            'Sacred calendar-aligned communications'
+                        ]
+                    },
+                    {
+                        name: 'Deputy Spokesperson Team',
+                        unFocus: 'Support and alternate briefings',
+                        uanFocus: 'Regional Indigenous Voices - representing major civilizational zones',
+                        keyInitiatives: [
+                            'Americas Indigenous Deputy Spokesperson',
+                            'Africa Indigenous Deputy Spokesperson',
+                            'Asia-Pacific Indigenous Deputy Spokesperson',
+                            'Arctic Indigenous Deputy Spokesperson',
+                            'Oceania Indigenous Deputy Spokesperson'
+                        ]
+                    },
+                    {
+                        name: 'Statements & Official Communications',
+                        unFocus: 'SG statements, readouts, correspondence',
+                        uanFocus: 'SPH Pronouncements & Indigenous Nations Official Declarations',
+                        keyInitiatives: [
+                            'SPH guidance documents on civilizational revival',
+                            'Official responses to indigenous rights violations',
+                            'Statements on sacred sites protection',
+                            'Declarations on cultural appropriation',
+                            'Indigenous nations solidarity statements'
+                        ]
+                    },
+                    {
+                        name: 'Press Accreditation & Relations',
+                        unFocus: 'UN press corps management',
+                        uanFocus: 'Indigenous & Allied Media Accreditation - prioritizing indigenous journalists',
+                        keyInitiatives: [
+                            'Indigenous journalist priority access',
+                            'Alternative media accreditation',
+                            'Community reporter credentials',
+                            'Sacred event media protocols',
+                            'Anti-extractive journalism guidelines'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'news',
+                icon: 'newspaper',
+                unName: 'UN News',
+                uanName: 'Indigenous Nations News Service (INNS)',
+                color: 'bg-blue-600',
+                priority: 'HIGHEST',
+                description: '24/7 multilingual news service covering indigenous issues, rights, culture, and sovereignty globally',
+                divisions: [
+                    {
+                        name: 'News Production Team',
+                        unFocus: 'Daily news stories in 10 languages',
+                        uanFocus: 'Round-the-clock indigenous news in 100+ languages - community-sourced reporting',
+                        keyInitiatives: [
+                            'Indigenous Community Correspondent Network',
+                            'Elder-approved cultural reporting',
+                            'Daily Indigenous Rights Updates',
+                            'Traditional Knowledge Features',
+                            'Indigenous Innovation Spotlights',
+                            'Decolonization Progress Reports'
+                        ]
+                    },
+                    {
+                        name: 'Multimedia News Division',
+                        unFocus: 'Text, audio, video news packages',
+                        uanFocus: 'Culturally-appropriate multimedia - video, audio, oral storytelling formats',
+                        keyInitiatives: [
+                            'Video news in indigenous sign languages',
+                            'Audio news for oral tradition communities',
+                            'Photo essays by indigenous photographers',
+                            'Animated explainers on indigenous rights',
+                            'Documentary news series'
+                        ]
+                    },
+                    {
+                        name: 'Regional News Bureaus',
+                        unFocus: 'Limited regional presence',
+                        uanFocus: 'EXPANDED: Indigenous Regions News Hubs - embedded in communities',
+                        keyInitiatives: [
+                            'Amazon Basin News Bureau',
+                            'Sub-Saharan Africa Indigenous News',
+                            'South Asia Indigenous Coverage',
+                            'Arctic Circle Reporting Hub',
+                            'Pacific Islands News Center',
+                            'Central Asia Indigenous Bureau'
+                        ]
+                    },
+                    {
+                        name: 'Breaking News & Alerts',
+                        unFocus: 'Major global stories',
+                        uanFocus: 'Indigenous Emergency Alerts - land grabs, rights violations, cultural threats',
+                        keyInitiatives: [
+                            'Real-time land rights violation alerts',
+                            'Indigenous defender threat warnings',
+                            'Environmental destruction rapid response',
+                            'Cultural appropriation exposure',
+                            'Sacred site protection emergencies'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'media-liaison',
+                icon: 'mic',
+                unName: 'UN Media Liaison & Accreditation',
+                uanName: 'Indigenous Media Relations & Community Journalism Support',
+                color: 'bg-purple-600',
+                priority: 'HIGH',
+                description: 'Building and supporting indigenous media ecosystem globally',
+                divisions: [
+                    {
+                        name: 'Media Accreditation Unit',
+                        unFocus: 'Accrediting international press',
+                        uanFocus: 'Indigenous & Community Media Credentialing - democratizing access',
+                        keyInitiatives: [
+                            'Fast-track indigenous journalist accreditation',
+                            'Community radio station credentials',
+                            'Tribal media organization recognition',
+                            'Indigenous blogger/podcaster access',
+                            'Traditional storyteller special access'
+                        ]
+                    },
+                    {
+                        name: 'Press Facilities & Services',
+                        unFocus: 'Press room, briefing facilities',
+                        uanFocus: 'Indigenous Media Center - culturally-appropriate workspace',
+                        keyInitiatives: [
+                            'Prayer/meditation rooms for journalists',
+                            'Low-bandwidth remote participation',
+                            'Indigenous language interpretation booths',
+                            'Traditional protocol spaces',
+                            'Community media training facilities'
+                        ]
+                    },
+                    {
+                        name: 'Media Capacity Building',
+                        unFocus: 'Limited training programs',
+                        uanFocus: 'CRITICAL ADDITION: Indigenous Journalism Academy',
+                        keyInitiatives: [
+                            'Indigenous journalism training programs',
+                            'Community reporter skill development',
+                            'Media literacy for indigenous communities',
+                            'Technical equipment grants',
+                            'Investigative journalism fellowships'
+                        ]
+                    },
+                    {
+                        name: 'Media Monitoring & Support',
+                        unFocus: 'Press coverage tracking',
+                        uanFocus: 'Indigenous Media Defense & Safety Network',
+                        keyInitiatives: [
+                            'Indigenous journalist safety protocols',
+                            'Legal defense fund for reporters',
+                            'Digital security training',
+                            'Anti-surveillance measures',
+                            'Rapid response to journalist threats'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'webcast',
+                icon: 'video',
+                unName: 'UN Web TV & Live Coverage',
+                uanName: 'Indigenous Nations Live Broadcasting & Digital Streams',
+                color: 'bg-indigo-600',
+                priority: 'HIGH',
+                description: 'Live streaming of indigenous councils, ceremonies, and events with cultural protocols',
+                divisions: [
+                    {
+                        name: 'Live Event Coverage',
+                        unFocus: 'GA sessions, Security Council, major events',
+                        uanFocus: 'Indigenous Assembly Live Streams - councils, gatherings, ceremonies (approved)',
+                        keyInitiatives: [
+                            'Live Indigenous General Assembly sessions',
+                            'Traditional Council webcasts',
+                            'Cultural ceremony streaming (with permission)',
+                            'Youth assembly coverage',
+                            'Elder wisdom sessions broadcasts'
+                        ]
+                    },
+                    {
+                        name: 'On-Demand Video Library',
+                        unFocus: 'UN meeting archives',
+                        uanFocus: 'Indigenous Heritage Video Archive - tiered access with cultural protocols',
+                        keyInitiatives: [
+                            'Public educational videos',
+                            'Restricted access cultural content',
+                            'Sacred ceremony recordings (elder-controlled)',
+                            'Historical indigenous moments archive',
+                            'Community-submitted documentation'
+                        ]
+                    },
+                    {
+                        name: 'Multi-Platform Distribution',
+                        unFocus: 'YouTube, UN platforms',
+                        uanFocus: 'Indigenous-owned and mainstream platform distribution',
+                        keyInitiatives: [
+                            'Indigenous-owned streaming platforms',
+                            'Low-bandwidth options for remote areas',
+                            'Satellite transmission to isolated communities',
+                            'Radio simulcasts for non-internet areas',
+                            'Community viewing center support'
+                        ]
+                    },
+                    {
+                        name: 'Technical Infrastructure',
+                        unFocus: 'Centralized UN facilities',
+                        uanFocus: 'EXPANDED: Distributed Indigenous Broadcast Network',
+                        keyInitiatives: [
+                            'Mobile streaming kits for communities',
+                            'Regional broadcast hubs',
+                            'Solar-powered transmission stations',
+                            'Satellite uplink equipment grants',
+                            'Community technician training'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'dpi',
+                icon: 'globe',
+                unName: 'UN Department of Global Communications (DGC)',
+                uanName: 'UAN Department of Indigenous Communications & Civilizational Revival (DICCR)',
+                color: 'bg-emerald-600',
+                priority: 'CORE',
+                description: 'Central hub for all indigenous media, storytelling, and civilizational narrative preservation',
+                divisions: [
+                    {
+                        name: 'Strategic Communications Division',
+                        unFocus: 'Global messaging and campaigns',
+                        uanFocus: 'Indigenous sovereignty narratives, decolonization messaging, civilizational pride campaigns',
+                        keyInitiatives: [
+                            'Ancient Wisdom Modern Voice campaign',
+                            'Indigenous Sovereignty Awareness drives',
+                            'Counter-colonial narrative programs',
+                            'Sacred Sites Protection messaging'
+                        ]
+                    },
+                    {
+                        name: 'Outreach Division',
+                        unFocus: 'Civil society engagement',
+                        uanFocus: 'Indigenous Communities Engagement - grassroots to international forums',
+                        keyInitiatives: [
+                            'Village-to-Global communication chains',
+                            'Indigenous Youth Ambassador programs',
+                            'Traditional Leaders Media Training',
+                            'Sacred Knowledge Sharing Protocols'
+                        ]
+                    },
+                    {
+                        name: 'Digital Content & Creative Services',
+                        unFocus: 'Multimedia production',
+                        uanFocus: 'Indigenous Digital Heritage Studio - preserving and modernizing indigenous media',
+                        keyInitiatives: [
+                            'Oral History Digital Archives',
+                            'Indigenous Art & Media Production',
+                            'Sacred Ceremony Documentation (with permission)',
+                            'Virtual Reality Cultural Experiences'
+                        ]
+                    },
+                    {
+                        name: 'Campaigns & Special Events',
+                        unFocus: 'International observances',
+                        uanFocus: 'Indigenous Cultural Celebrations & Advocacy Campaigns',
+                        keyInitiatives: [
+                            'Indigenous Peoples Day global campaigns',
+                            'Mother Earth Day celebrations',
+                            'Language revival campaigns',
+                            'Sacred site protection drives',
+                            'Indigenous rights awareness months'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'broadcast',
+                icon: 'radio',
+                unName: 'UN Radio & Audio Services',
+                uanName: 'Indigenous Nations Broadcasting Corporation (INBC)',
+                color: 'bg-cyan-600',
+                priority: 'CORE',
+                description: 'Comprehensive broadcasting network in indigenous languages and cultural contexts',
+                divisions: [
+                    {
+                        name: 'Radio Services',
+                        unFocus: 'UN Radio in 6 languages',
+                        uanFocus: 'Indigenous Radio Network - 500+ languages, community stations',
+                        keyInitiatives: [
+                            'Village Radio Network in local dialects',
+                            'Elder Storytelling Hours',
+                            'Indigenous Music & Cultural Programs',
+                            'Emergency Broadcast for Indigenous Communities'
+                        ]
+                    },
+                    {
+                        name: 'Podcast Production',
+                        unFocus: 'Limited UN podcasts',
+                        uanFocus: 'Voices of the Ancients - multilingual podcast network',
+                        keyInitiatives: [
+                            'Elder Wisdom Series',
+                            'Indigenous Leaders Interviews',
+                            'Sacred Stories (authorized)',
+                            'Indigenous Rights Advocacy',
+                            'Youth-led podcast initiatives'
+                        ]
+                    },
+                    {
+                        name: 'Audio Content Library',
+                        unFocus: 'UN audio archives',
+                        uanFocus: 'Indigenous Oral Tradition Digital Preservation',
+                        keyInitiatives: [
+                            'Traditional song recordings',
+                            'Ceremonial chant archives',
+                            'Storytelling collections',
+                            'Language learning audio resources',
+                            'Community radio program library'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'languages',
+                icon: 'message-square',
+                unName: 'UN Language Services',
+                uanName: 'Indigenous Languages Preservation & Translation Services (ILPTS)',
+                color: 'bg-purple-500',
+                priority: 'CORE',
+                description: 'Protecting, reviving, and utilizing thousands of indigenous languages',
+                divisions: [
+                    {
+                        name: 'Translation Services',
+                        unFocus: '6 official UN languages',
+                        uanFocus: 'Multi-indigenous language translation - prioritizing endangered languages',
+                        keyInitiatives: [
+                            '1000+ indigenous language translation capacity',
+                            'Sacred Text Translation Protocols',
+                            'Community Translator Training',
+                            'AI-assisted endangered language preservation'
+                        ]
+                    },
+                    {
+                        name: 'Interpretation Services',
+                        unFocus: 'Simultaneous interpretation',
+                        uanFocus: 'Indigenous Council Interpretation - real-time multilingual support',
+                        keyInitiatives: [
+                            'Elder Council interpretation services',
+                            'Regional language interpretation hubs',
+                            'Remote interpretation for isolated communities',
+                            'Cultural context interpretation training'
+                        ]
+                    },
+                    {
+                        name: 'Language Preservation Unit',
+                        unFocus: 'N/A in UN',
+                        uanFocus: 'CRITICAL ADDITION - Digital archiving of dying languages',
+                        keyInitiatives: [
+                            'Emergency Language Documentation',
+                            'Last Speaker Recording Projects',
+                            'Indigenous Language Databases',
+                            'Youth Language Revival Programs'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'digital',
+                icon: 'smartphone',
+                unName: 'UN Digital Platforms',
+                uanName: 'Indigenous Digital Sovereignty Platform (IDSP)',
+                color: 'bg-teal-500',
+                priority: 'CORE',
+                description: 'Digital infrastructure respecting indigenous data sovereignty and cultural protocols',
+                divisions: [
+                    {
+                        name: 'Website & Portal',
+                        unFocus: 'UN.org - centralized information',
+                        uanFocus: 'UAN.indigenous - culturally-sensitive, multilingual portal',
+                        keyInitiatives: [
+                            'Indigenous-designed UI/UX',
+                            'Offline-first architecture for remote areas',
+                            'Sacred knowledge access controls',
+                            'Community-managed content sections'
+                        ]
+                    },
+                    {
+                        name: 'Social Media Strategy',
+                        unFocus: 'Global social media presence',
+                        uanFocus: 'Indigenous Social Networks - respecting cultural communication norms',
+                        keyInitiatives: [
+                            'Platform-specific indigenous content',
+                            'Community-moderated spaces',
+                            'Anti-cultural appropriation monitoring',
+                            'Indigenous influencer partnerships'
+                        ]
+                    },
+                    {
+                        name: 'Data Sovereignty Unit',
+                        unFocus: 'N/A in UN',
+                        uanFocus: 'CRITICAL ADDITION - Protecting indigenous data rights',
+                        keyInitiatives: [
+                            'CARE Principles implementation',
+                            'Tribal data governance frameworks',
+                            'Anti-biopiracy digital monitoring',
+                            'Indigenous AI ethics standards'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'library',
+                icon: 'book-open',
+                unName: 'UN Library & Archives',
+                uanName: 'Sacred Knowledge Repository & Living Archives (SKRLA)',
+                color: 'bg-amber-600',
+                priority: 'CORE',
+                description: 'Preserving indigenous knowledge with proper protocols and community ownership',
+                divisions: [
+                    {
+                        name: 'Digital Archives',
+                        unFocus: 'UN documentation archives',
+                        uanFocus: 'Indigenous Heritage Digital Vault - community-controlled access',
+                        keyInitiatives: [
+                            'Oral history collections',
+                            'Traditional knowledge databases',
+                            'Repatriation of colonial archives',
+                            'Community-approved digitization'
+                        ]
+                    },
+                    {
+                        name: 'Research & Publications',
+                        unFocus: 'UN reports and publications',
+                        uanFocus: 'Indigenous Scholarship Press - decolonized research',
+                        keyInitiatives: [
+                            'Indigenous-led research publications',
+                            'Traditional knowledge journals',
+                            'Multilingual academic resources',
+                            'Community-based research protocols'
+                        ]
+                    },
+                    {
+                        name: 'Sacred Knowledge Protocol Office',
+                        unFocus: 'N/A in UN',
+                        uanFocus: 'CRITICAL ADDITION - Protecting sacred and ceremonial information',
+                        keyInitiatives: [
+                            'Access tier management (public/restricted/sacred)',
+                            'Elder approval processes',
+                            'Anti-misappropriation safeguards',
+                            'Seasonal/ceremonial access controls'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'creative',
+                icon: 'film',
+                unName: 'UN Creative Content',
+                uanName: 'Indigenous Creative & Cultural Revival Studio (ICCRS)',
+                color: 'bg-rose-600',
+                priority: 'CORE',
+                description: 'Empowering indigenous artists and cultural practitioners globally',
+                divisions: [
+                    {
+                        name: 'Film & Documentary',
+                        unFocus: 'UN documentary production',
+                        uanFocus: 'Indigenous Cinema Movement - authentic storytelling by indigenous filmmakers',
+                        keyInitiatives: [
+                            'Indigenous Filmmakers Fund',
+                            'Cultural authenticity certification',
+                            'Community screening programs',
+                            'International indigenous film festivals'
+                        ]
+                    },
+                    {
+                        name: 'Photography & Visual Media',
+                        unFocus: 'UN photo library',
+                        uanFocus: 'Indigenous Visual Storytelling - community-controlled imagery',
+                        keyInitiatives: [
+                            'Indigenous photographer network',
+                            'Cultural event documentation',
+                            'Anti-extractive photography protocols',
+                            'Community photo archive projects'
+                        ]
+                    },
+                    {
+                        name: 'Music & Performance',
+                        unFocus: 'Limited UN involvement',
+                        uanFocus: 'CRITICAL ADDITION - Indigenous Music & Performance Network',
+                        keyInitiatives: [
+                            'Traditional music archives',
+                            'Indigenous performance platforms',
+                            'Sacred music protection protocols',
+                            'Youth cultural performance programs'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'advocacy',
+                icon: 'shield',
+                unName: 'UN Public Information Campaigns',
+                uanName: 'Indigenous Rights Advocacy & Counter-Narrative Unit (IRACU)',
+                color: 'bg-red-500',
+                priority: 'CORE',
+                description: 'Combating misinformation and advocating for indigenous rights globally',
+                divisions: [
+                    {
+                        name: 'Counter-Narrative Division',
+                        unFocus: 'General public information',
+                        uanFocus: 'CRITICAL ADDITION - Combating colonial narratives and cultural erasure',
+                        keyInitiatives: [
+                            'Decolonization education campaigns',
+                            'Countering indigenous stereotypes',
+                            'Land rights advocacy messaging',
+                            'Cultural appropriation watchdog'
+                        ]
+                    },
+                    {
+                        name: 'Media Monitoring',
+                        unFocus: 'UN media monitoring',
+                        uanFocus: 'Indigenous Media Watch - tracking representation and bias',
+                        keyInitiatives: [
+                            'Global media representation analysis',
+                            'Rapid response to misrepresentation',
+                            'Indigenous journalist support network',
+                            'Fact-checking indigenous issues'
+                        ]
+                    },
+                    {
+                        name: 'Crisis Communication',
+                        unFocus: 'UN crisis messaging',
+                        uanFocus: 'Indigenous Emergency Response Communications',
+                        keyInitiatives: [
+                            'Land rights violations rapid response',
+                            'Environmental crisis communication',
+                            'Cultural heritage emergency alerts',
+                            'Indigenous defender protection messaging'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'partnership',
+                icon: 'users',
+                unName: 'UN Civil Society & Media Partnerships',
+                uanName: 'Indigenous Nations Alliance & Solidarity Network (INASN)',
+                color: 'bg-indigo-500',
+                priority: 'CORE',
+                description: 'Building bridges between indigenous nations and supporting organizations',
+                divisions: [
+                    {
+                        name: 'Indigenous Organizations Network',
+                        unFocus: 'NGO partnerships',
+                        uanFocus: 'Global indigenous organization coordination and support',
+                        keyInitiatives: [
+                            'Indigenous NGO capacity building',
+                            'Inter-nation collaboration platforms',
+                            'Resource sharing networks',
+                            'Joint advocacy campaigns'
+                        ]
+                    },
+                    {
+                        name: 'Media Partner Network',
+                        unFocus: 'Traditional media partnerships',
+                        uanFocus: 'Indigenous media organization support and training',
+                        keyInitiatives: [
+                            'Community radio station support',
+                            'Indigenous journalist training',
+                            'Alternative media partnerships',
+                            'Grassroots media funding'
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        const icons = {
+            'megaphone': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>',
+            'newspaper': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>',
+            'mic': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>',
+            'video': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>',
+            'globe': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>',
+            'radio': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.348 14.651a3.75 3.75 0 010-5.303m5.304 0a3.75 3.75 0 010 5.303m-7.425 2.122a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M5.106 18.894c-3.808-3.808-3.808-9.98 0-13.789m13.788 0c3.808 3.808 3.808 9.981 0 13.79M12 12h.008v.007H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path>',
+            'message-square': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>',
+            'smartphone': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>',
+            'book-open': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>',
+            'film': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"></path>',
+            'shield': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>',
+            'users': '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>'
+        };
+
+        function renderDepartments() {
+            const priorityOrder = { 'HIGHEST': 0, 'HIGH': 1, 'CORE': 2 };
+            const sortedDepts = [...departments].sort((a, b) =>
+                priorityOrder[a.priority] - priorityOrder[b.priority]
+            );
+
+            const container = document.getElementById('departments');
+
+            sortedDepts.forEach(dept => {
+                const deptDiv = document.createElement('div');
+                deptDiv.className = 'department';
+                deptDiv.style.borderColor = dept.color.replace('bg-', '#').replace('red-600', 'dc2626').replace('blue-600', '2563eb').replace('purple-600', '9333ea').replace('indigo-600', '4f46e5').replace('emerald-600', '059669').replace('cyan-600', '0891b2').replace('purple-500', 'a855f7').replace('teal-500', '14b8a6').replace('amber-600', 'd97706').replace('rose-600', 'e11d48').replace('red-500', 'ef4444').replace('indigo-500', '6366f1');
+
+                const priorityClass = dept.priority === 'HIGHEST' ? 'priority-highest' :
+                                     dept.priority === 'HIGH' ? 'priority-high' : 'priority-core';
+
+                deptDiv.innerHTML = `
+                    <div class="department-header" onclick="toggleDepartment('${dept.id}')">
+                        <div class="department-icon ${dept.color}">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                ${icons[dept.icon]}
+                            </svg>
+                        </div>
+                        <div class="department-content">
+                            <div class="department-title-row">
+                                <h2 class="department-title">${dept.uanName}</h2>
+                                <span class="priority-badge ${priorityClass}">${dept.priority}</span>
+                                <svg class="chevron" id="chevron-${dept.id}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                            <p class="department-subtitle">Mapped from: ${dept.unName}</p>
+                            <p class="department-description">${dept.description}</p>
+                        </div>
+                    </div>
+                    <div class="department-body" id="body-${dept.id}">
+                        ${dept.divisions.map(div => `
+                            <div class="division">
+                                <h3>${div.name}</h3>
+                                <div class="focus-grid">
+                                    <div class="focus-box focus-un">
+                                        <p class="focus-label">UN Focus</p>
+                                        <p>${div.unFocus}</p>
+                                    </div>
+                                    <div class="focus-box focus-uan">
+                                        <p class="focus-label">UAN Focus</p>
+                                        <p class="focus-text">${div.uanFocus}</p>
+                                    </div>
+                                </div>
+                                <div class="initiatives">
+                                    <p class="initiatives-title">Key Initiatives:</p>
+                                    <ul>
+                                        ${div.keyInitiatives.map(init => `<li>${init}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                container.appendChild(deptDiv);
+            });
+        }
+
+        function toggleDepartment(id) {
+            const body = document.getElementById('body-' + id);
+            const chevron = document.getElementById('chevron-' + id);
+
+            body.classList.toggle('expanded');
+
+            if (body.classList.contains('expanded')) {
+                chevron.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+            } else {
+                chevron.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>';
+            }
+        }
+
+        renderDepartments();
+    </script>
+</body>
+</html>

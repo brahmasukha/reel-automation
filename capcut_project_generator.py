@@ -109,7 +109,12 @@ class CapCutProjectGenerator:
         new_segments = []
         current_timeline_pos = 0
 
-        for reel_idx, reel in enumerate(reels):
+        if progress_callback:
+            progress_callback(f"Gap setting: {self.gap_between_reels / 1_000_000:.0f} seconds ({self.gap_between_reels} microseconds)")
+
+        for reel_idx, reel in enumerate(reels, 1):  # Start from 1 for easier comparison
+            reel_start_time = current_timeline_pos
+
             for cut_idx, (start_str, end_str, comment) in enumerate(reel):
                 start_us = self._time_str_to_us(start_str)
                 end_us = self._time_str_to_us(end_str)
@@ -132,19 +137,51 @@ class CapCutProjectGenerator:
                     "start": current_timeline_pos,
                     "duration": duration_us
                 }
-                # segment['render_index'] = len(new_segments) # Removed to match legacy script
+                segment['render_index'] = len(new_segments)  # CRITICAL: CapCut uses this for ordering!
 
                 new_segments.append(segment)
                 current_timeline_pos += duration_us
 
-            # Add gap between reels
-            current_timeline_pos += self.gap_between_reels
+            # Add gap between reels (NOT after the last reel)
+            if reel_idx < len(reels):  # Now works correctly: 1<6, 2<6, ..., 5<6, but NOT 6<6
+                # CREATE A BLACK/MUTED SEGMENT FOR THE GAP
+                # This is the key fix: CapCut doesn't support "empty space", it needs actual segments
+                gap_segment = copy.deepcopy(template_segment)
+                gap_segment['id'] = str(uuid.uuid4()).upper()
+
+                # Use the first second of the video (likely black or intro) for the gap
+                # Or use any part of the video with volume muted
+                gap_segment['source_timerange'] = {
+                    "start": 0,  # Use first frame of source video
+                    "duration": self.gap_between_reels
+                }
+                gap_segment['target_timerange'] = {
+                    "start": current_timeline_pos,
+                    "duration": self.gap_between_reels
+                }
+                gap_segment['render_index'] = len(new_segments)
+                gap_segment['volume'] = 0.0  # MUTE the gap segment so it's silent
+
+                # Make it visually distinct (optional: you can set opacity low to make it dark)
+                if 'clip' in gap_segment:
+                    gap_segment['clip']['alpha'] = 0.1  # 10% opacity = almost black
+
+                new_segments.append(gap_segment)
+                current_timeline_pos += self.gap_between_reels
+
+                if progress_callback:
+                    reel_duration = (current_timeline_pos - reel_start_time - self.gap_between_reels) / 1_000_000
+                    progress_callback(f"  Reel {reel_idx}: {reel_duration:.1f}s + BLACK GAP SEGMENT of {self.gap_between_reels / 1_000_000:.0f}s")
+            else:
+                if progress_callback:
+                    reel_duration = (current_timeline_pos - reel_start_time) / 1_000_000
+                    progress_callback(f"  Reel {reel_idx} (LAST): {reel_duration:.1f}s + NO GAP")
 
         # Update track with new segments
         video_track['segments'] = new_segments
 
-        # Update total duration (remove last gap)
-        data['duration'] = current_timeline_pos - self.gap_between_reels
+        # Update total duration (gap already not added after last reel)
+        data['duration'] = current_timeline_pos
 
         # Save modified project
         with open(draft_file_path, 'w', encoding='utf-8') as f:
@@ -269,7 +306,7 @@ class CapCutProjectGenerator:
         segments = []
         current_timeline_pos = 0
 
-        for reel_idx, reel in enumerate(reels):
+        for reel_idx, reel in enumerate(reels, 1):  # Start from 1 for easier comparison
             for cut_idx, (start_str, end_str, comment) in enumerate(reel):
                 start_us = self._time_str_to_us(start_str)
                 end_us = self._time_str_to_us(end_str)
@@ -332,11 +369,64 @@ class CapCutProjectGenerator:
                 segments.append(segment)
                 current_timeline_pos += duration_us
 
-            # Add gap between reels
-            current_timeline_pos += self.gap_between_reels
+            # Add gap between reels (except after the last reel)
+            if reel_idx < len(reels):
+                # CREATE A BLACK/MUTED SEGMENT FOR THE GAP
+                gap_segment_id = str(uuid.uuid4()).upper()
+                gap_segment = {
+                    "id": gap_segment_id,
+                    "category_id": "",
+                    "category_name": "video",
+                    "check_flag": 1,
+                    "clip": {
+                        "alpha": 0.1,  # 10% opacity = almost black
+                        "flip": {"horizontal": False, "vertical": False},
+                        "rotation": 0.0,
+                        "scale": {"x": 1.0, "y": 1.0},
+                        "transform": {"x": 0.0, "y": 0.0}
+                    },
+                    "common_keyframes": [],
+                    "enable_adjust": True,
+                    "enable_color_curves": True,
+                    "enable_color_match_adjust": False,
+                    "enable_color_wheels": True,
+                    "enable_lut": True,
+                    "enable_smart_color_adjust": False,
+                    "extra_material_refs": [],
+                    "group_id": "",
+                    "hdr_settings": {"intensity": 1.0, "mode": 1, "nits": 1000},
+                    "is_placeholder": False,
+                    "is_tone_modify": False,
+                    "keyframe_refs": [],
+                    "last_nonzero_volume": 1.0,
+                    "material_id": material_id,
+                    "render_index": len(segments),
+                    "reverse": False,
+                    "source_timerange": {
+                        "duration": self.gap_between_reels,
+                        "start": 0  # Use first frame of source video
+                    },
+                    "speed": 1.0,
+                    "target_timerange": {
+                        "duration": self.gap_between_reels,
+                        "start": current_timeline_pos
+                    },
+                    "template_id": "",
+                    "template_scene": "default",
+                    "track_attribute": 0,
+                    "track_render_index": 0,
+                    "uniform_scale": {
+                        "on": True,
+                        "value": 1.0
+                    },
+                    "visible": True,
+                    "volume": 0.0  # MUTED gap segment
+                }
+                segments.append(gap_segment)
+                current_timeline_pos += self.gap_between_reels
 
-        # Calculate total duration (remove last gap)
-        total_duration = current_timeline_pos - self.gap_between_reels if segments else 0
+        # Calculate total duration (gap already not added after last reel)
+        total_duration = current_timeline_pos if segments else 0
 
         # Build the complete draft_info structure
         draft_info = {

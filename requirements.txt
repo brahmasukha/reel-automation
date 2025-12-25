@@ -1,5 +1,6 @@
 # Core dependencies
-openai-whisper==20231117
+# Note: Install openai-whisper separately using: pip install -U openai-whisper
+# openai-whisper>=20231106
 openai>=1.0.0
 anthropic>=0.18.0
 google-genai>=0.1.0
